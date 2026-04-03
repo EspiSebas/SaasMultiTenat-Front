@@ -5,13 +5,15 @@ import { DashboardComponent } from './features/home/components/dashboard/dashboa
 import { NgModule } from '@angular/core';
 import { ListComponentProduct } from './features/products/components/list/list.component';
 import { ListComponentCategories } from './features/categories/components/list/list-categories.component';
-
+import { ListHistorialSaleComponent } from './features/historial/components/list-historial-sale/list-historial-sale.component';
 export const routes: Routes = [
     { path: '', redirectTo: "login", pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterFormComponent },
     { path: 'dashboard', component: DashboardComponent },
     { path: 'products', component: ListComponentProduct },
+    { path: 'historialSales', component: ListHistorialSaleComponent},
+    
     { path: 'categories', component: ListComponentCategories },
     
 ];

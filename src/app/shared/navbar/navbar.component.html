@@ -1,19 +1,21 @@
-<nav class="col-md-2 d-none d-md-block bg-dark sidebar text-white p-3 vh-100">
-  
-  <h4 class="text-white text-center mb-4 fw-bold">
-    Saas Multi Tenant
-  </h4>
+<nav class="col-md-2 d-none d-md-flex flex-column bg-dark text-white vh-100 p-3 shadow">
 
-  <ul class="nav flex-column gap-2">
+  <div class="text-center mb-4">
+    <h4 class="fw-bold mb-1">SaaS Panel</h4>
+    <small class="text-muted">Multi Tenant</small>
+  </div>
+
+
+  <ul class="nav flex-column gap-2 flex-grow-1">
 
     <li class="nav-item">
       <a
-        routerLink="/"
-        routerLinkActive="bg-primary text-white fw-semibold"
+        routerLink="/dashboard"
+        routerLinkActive="active-link"
         [routerLinkActiveOptions]="{ exact: true }"
-        class="nav-link rounded px-3 py-2 text-light"
+        class="nav-link d-flex align-items-center"
       >
-        <i class="bi bi-speedometer2 me-2"></i>
+        <i class="bi bi-speedometer2 me-3"></i>
         Dashboard
       </a>
     </li>
@@ -21,10 +23,10 @@
     <li class="nav-item">
       <a
         routerLink="/products"
-        routerLinkActive="bg-primary text-white fw-semibold"
-        class="nav-link rounded px-3 py-2 text-light"
+        routerLinkActive="active-link"
+        class="nav-link d-flex align-items-center"
       >
-        <i class="bi bi-ticket me-2"></i>
+        <i class="bi bi-box-seam me-3"></i>
         Productos
       </a>
     </li>
@@ -32,31 +34,35 @@
     <li class="nav-item">
       <a
         routerLink="/categories"
-        routerLinkActive="bg-primary text-white fw-semibold"
-        class="nav-link rounded px-3 py-2 text-light"
+        routerLinkActive="active-link"
+        class="nav-link d-flex align-items-center"
       >
-        <i class="bi bi-person me-2"></i>
-        Categorias
+        <i class="bi bi-tags me-3"></i>
+        Categorías
       </a>
     </li>
 
     <li class="nav-item">
       <a
-        routerLink="/Historial"
-        routerLinkActive="bg-primary text-white fw-semibold"
-        class="nav-link rounded px-3 py-2 text-light"
+        routerLink="/historialSales"
+        routerLinkActive="active-link"
+        class="nav-link d-flex align-items-center"
       >
-        <i class="bi bi-person me-2"></i>
+        <i class="bi bi-clock-history me-3"></i>
         Historial
       </a>
     </li>
-    
-      <button 
-        class="btn btn-outline-danger btn-sm"
-        (click)="logout()">
-        <i class="bi bi-box-arrow-right me-1"></i>
-        Cerrar sesión
-      </button>
 
   </ul>
+
+  
+  <div class="mt-auto">
+    <button 
+      class="btn btn-danger w-100 d-flex align-items-center justify-content-center"
+      (click)="logout()">
+      <i class="bi bi-box-arrow-right me-2"></i>
+      Cerrar sesión
+    </button>
+  </div>
+
 </nav>

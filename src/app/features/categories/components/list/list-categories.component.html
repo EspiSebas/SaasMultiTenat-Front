@@ -1,14 +1,15 @@
 <div class="container-fluid">
   <div class="row">
 
-
+ 
     <div class="col-md-2 bg-dark text-white vh-100 p-3">
       <app-navbar></app-navbar>
     </div>
 
-
+   
     <div class="col-md-10 bg-light min-vh-100 p-4">
 
+      
       <div class="d-flex justify-content-between align-items-center mb-4">
         <h2 class="fw-bold mb-0">Categorias</h2>
 
@@ -18,47 +19,41 @@
         </button>
       </div>
 
-      <div class="card shadow-sm border-0">
-        <div class="card-body p-3">
+    
+      <div class="row g-4">
 
-          <div class="table-responsive">
-            <table class="table table-hover align-middle mb-0">
+        <div class="col-md-4" *ngFor="let cat of categories">
+          <div class="card shadow-sm border-0 h-100">
 
-              <thead class="table-dark">
-                <tr>
-                  <th>ID</th>
-                  <th>Nombre</th>
-                  <th>Descripcion</th>
-                  <th class="text-center">Actions</th>
-                </tr>
-              </thead>
+            <div class="card-body d-flex flex-column">
 
-              <tbody>
-                <tr *ngFor="let cat of categories">
-                  <td class="fw-semibold">{{cat.id}}</td>
-                  <td>{{cat.name}}</td>
-                  <td>{{cat.description}}</td>
-                  <td class="text-center">
-                    <button class="btn btn-outline-primary btn-sm me-2">
-                      Editar
-                    </button>
+              <h6 class="text-muted">ID: {{cat.id}}</h6>
 
-                    <button class="btn btn-outline-danger btn-sm">
-                      Eliminar
-                    </button>
-                  </td>
+              <h5 class="fw-bold">{{cat.name}}</h5>
 
-                </tr>
-              </tbody>
+              
+              <p class="text-muted flex-grow-1">
+                {{cat.description}}
+              </p>
 
-            </table>
+              
+              <div class="d-flex justify-content-end mt-3">
+                <button class="btn btn-outline-primary btn-sm me-2">
+                  Editar
+                </button>
+
+                <button class="btn btn-outline-danger btn-sm">
+                  Eliminar
+                </button>
+              </div>
+
+            </div>
+
           </div>
-
         </div>
+
       </div>
 
     </div>
-
-
   </div>
 </div>
