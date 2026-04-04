@@ -19,9 +19,8 @@ export class ModalDetailsComponent {
     for (let item of this.sale.details) {
       this.total += item.total;
     }
-
-
-      return this.total + (this.total * 0.19);
+    
+    return this.total + (this.total * 0.19-this.sale.discount);
   }
 
 

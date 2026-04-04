@@ -1,2 +1,99 @@
-<app-navbar></app-navbar>
-<h1>Dashboard</h1>
+<div class="container-fluid">
+  <div class="row">
+
+    <!-- 🧭 SIDEBAR -->
+    <div class="col-md-2 bg-dark min-vh-100 p-0 position-fixed">
+      <app-navbar></app-navbar>
+    </div>
+
+    <!-- 📊 CONTENT -->
+    <div class="col-md-10 offset-md-2 p-4 bg-light min-vh-100">
+
+      <!-- 🔝 STATS -->
+      <div class="row g-3 mb-4">
+
+        <div class="col-md-3" *ngFor="let stat of [
+          {title:'Productos', value:stats.products, icon:'📦'},
+          {title:'Categorías', value:stats.categories, icon:'📂'},
+          {title:'Ventas Hoy', value:stats.dailySales, icon:'💰'},
+          {title:'Total Ventas', value:stats.totalSales, icon:'📊'}
+        ]">
+          <div class="card shadow-sm border-0 rounded-4 p-3 d-flex flex-row align-items-center">
+            <div class="fs-2 me-3">{{ stat.icon }}</div>
+            <div>
+              <small class="text-muted">{{ stat.title }}</small>
+              <h5 class="fw-bold mb-0">{{ stat.value }}</h5>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 📦 INVENTARIO -->
+      <div class="card shadow-sm border-0 rounded-4 mb-4">
+        <div class="card-body">
+
+          <h5 class="fw-bold mb-3">Inventario de Productos</h5>
+
+          <div class="table-responsive">
+            <table class="table align-middle">
+
+              <thead class="text-muted">
+                <tr>
+                  <th>Producto</th>
+                  <th>Categoría</th>
+                  <th>Stock</th>
+                  <th>Precio</th>
+                  <th>Estado</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr *ngFor="let p of products">
+                  <td class="fw-semibold">{{ p.name }}</td>
+                  <td>{{ p.category }}</td>
+                  <td>{{ p.stock }}</td>
+                  <td>${{ p.price }}</td>
+                  <td>
+                    <span [ngClass]="getStatusClass(p.status)">
+                      {{ getStatusLabel(p.status) }}
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+
+            </table>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 📊 RESUMEN -->
+      <div class="row g-3">
+
+        <div class="col-md-4">
+          <div class="card border-0 shadow-sm rounded-4 text-center p-3">
+            <h6 class="text-success">En Stock</h6>
+            <h3 class="fw-bold">{{ resumen.enStock }}</h3>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card border-0 shadow-sm rounded-4 text-center p-3">
+            <h6 class="text-warning">Bajo Mínimo</h6>
+            <h3 class="fw-bold">{{ resumen.bajoMinimo }}</h3>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card border-0 shadow-sm rounded-4 text-center p-3">
+            <h6 class="text-danger">Agotados</h6>
+            <h3 class="fw-bold">{{ resumen.agotados }}</h3>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
