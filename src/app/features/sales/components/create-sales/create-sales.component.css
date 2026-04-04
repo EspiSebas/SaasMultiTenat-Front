@@ -1,0 +1,11 @@
+.card {
+  transition: all 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+}
+
+.table td, .table th {
+  vertical-align: middle;
+}

@@ -6,6 +6,7 @@ import { NgModule } from '@angular/core';
 import { ListComponentProduct } from './features/products/components/list/list.component';
 import { ListComponentCategories } from './features/categories/components/list/list-categories.component';
 import { ListHistorialSaleComponent } from './features/historial/components/list-historial-sale/list-historial-sale.component';
+import { CreateSalesComponent } from './features/sales/components/create-sales/create-sales.component';
 export const routes: Routes = [
     { path: '', redirectTo: "login", pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
@@ -13,7 +14,7 @@ export const routes: Routes = [
     { path: 'dashboard', component: DashboardComponent },
     { path: 'products', component: ListComponentProduct },
     { path: 'historialSales', component: ListHistorialSaleComponent},
-    
+    {path:'crearVenta',component: CreateSalesComponent},
     { path: 'categories', component: ListComponentCategories },
     
 ];

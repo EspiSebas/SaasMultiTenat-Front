@@ -1,15 +1,13 @@
 <div class="container-fluid">
   <div class="row">
-
-    <!-- 🧭 SIDEBAR -->
     <div class="col-md-2 bg-dark min-vh-100 p-0 position-fixed">
       <app-navbar></app-navbar>
     </div>
 
-    <!-- 📊 CONTENT -->
+    
     <div class="col-md-10 offset-md-2 p-4 bg-light min-vh-100">
 
-      <!-- 🔝 STATS -->
+     
       <div class="row g-3 mb-4">
 
         <div class="col-md-3" *ngFor="let stat of [
@@ -51,8 +49,8 @@
               <tbody>
                 <tr *ngFor="let p of products">
                   <td class="fw-semibold">{{ p.name }}</td>
-                  <td>{{ p.category }}</td>
-                  <td>{{ p.stock }}</td>
+                  <td>{{ p.category.name }}</td>
+                  <td>{{ p.quantity }}</td>
                   <td>${{ p.price }}</td>
                   <td>
                     <span [ngClass]="getStatusClass(p.status)">
@@ -63,6 +61,9 @@
               </tbody>
 
             </table>
+          </div>
+          <div>
+            <button class="btn btn-success" type="button" routerLink="/products">Ver inventario completo</button>
           </div>
 
         </div>

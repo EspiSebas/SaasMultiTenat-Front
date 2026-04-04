@@ -1,34 +1,64 @@
 import { Component } from '@angular/core';
 import { NavbarComponent } from '../../../../shared/navbar/navbar.component';
 import { CommonModule } from '@angular/common';
-
+import { ProductService } from '../../../products/services/products.service';
+import { CategoryService } from '../../../categories/services/categories.service';
+import { Router,RouterModule } from '@angular/router';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [NavbarComponent,CommonModule],
+  imports: [NavbarComponent,CommonModule,RouterModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent {
+  
+  
+
+  constructor(
+    private productService: ProductService,
+    private categoryService: CategoryService
+  ){}
+  
   stats = {
-    products: 150,
-    categories: 8,
+    products: 0,
+    categories: 0,
     dailySales: 1250,
     totalSales: 20430
   };
 
-  products = [
-    { name: 'Camiseta Roja', category: 'Ropa', stock: 30, price: 15, status: 'EN_STOCK' },
-    { name: 'Zapatos Deportivos', category: 'Calzado', stock: 5, price: 45, status: 'BAJO_MINIMO' },
-    { name: 'Reloj Digital', category: 'Accesorios', stock: 0, price: 60, status: 'AGOTADO' },
-    { name: 'Mochila Negra', category: 'Mochilas', stock: 20, price: 35, status: 'EN_STOCK' }
-  ];
+  products: any = []
 
   resumen = {
     enStock: 150,
     bajoMinimo: 8,
     agotados: 3
   };
+
+
+   ngOnInit(): void {
+    this.getProducts();
+    this.getCategories();
+  }
+
+
+  getProducts(){
+    this.productService.getProduct().subscribe({
+      next:(data) => {
+        this.stats.products = data.length
+        this.products = data.slice(0,4)
+      },
+      error: (err) => console.error(err)
+    })
+  }
+
+
+  getCategories(){
+    this.categoryService.getCategories().subscribe({
+      next:(data) => this.stats.categories = data.length,
+      error:(err) => console.log(err)
+    })
+  }
 
   getStatusClass(status: string) {
     return {
