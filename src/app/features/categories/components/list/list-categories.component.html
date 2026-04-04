@@ -13,7 +13,7 @@
       <div class="d-flex justify-content-between align-items-center mb-4">
         <h2 class="fw-bold mb-0">Categorias</h2>
 
-        <button class="btn btn-success d-flex align-items-center">
+        <button class="btn btn-success d-flex align-items-center" (click)="openModalCreate()">
           <i class="bi bi-plus-lg me-2"></i>
           Añadir Categoria
         </button>
@@ -42,7 +42,7 @@
                   Editar
                 </button>
 
-                <button class="btn btn-outline-danger btn-sm">
+                <button class="btn btn-outline-danger btn-sm" (click)="delete(cat.id)">
                   Eliminar
                 </button>
               </div>
@@ -57,3 +57,9 @@
     </div>
   </div>
 </div>
+
+<app-modal-create-category
+*ngIf="showCreateModal"
+(close)="closeCreateModal()"
+(created)="onCategoryCreated($event)">
+></app-modal-create-category>

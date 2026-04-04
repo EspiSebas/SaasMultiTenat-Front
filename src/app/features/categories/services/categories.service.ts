@@ -23,7 +23,7 @@ export class CategoryService {
         return this.http.put<void>(this.urlCategory + `/update/${id}`,category)
     }
 
-    deleteProduct(id:number){
+    deleteCategory(id:number){
         return this.http.delete<void>(this.urlCategory + `/delete/${id}`)
     }
 

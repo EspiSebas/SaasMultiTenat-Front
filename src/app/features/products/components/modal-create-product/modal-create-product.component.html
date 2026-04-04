@@ -1,0 +1,63 @@
+<div class="modal-backdrop fade show"></div>
+
+<div class="modal fade show d-block">
+    <div class="modal-dialog modal-sl modal-dialog-centered">
+        <div class="modal-content">
+
+            <div class="modal-header bg-dark text-white">
+                <h5 class="modal-title">Crear producto</h5>
+                <button type="button" class="btn-close btn-close-white" (click)="cancel()">
+                </button>
+            </div>
+
+            <div class="modal-body">
+
+                <form>
+                    <div class="mb-3">
+                        <label class="form-label">Nombre</label>
+                        <input type="text" class="form-control" [(ngModel)]="name" name="name"
+                            placeholder="Escribe el nombre" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Descripción</label>
+                        <input type="text" class="form-control" [(ngModel)]="description" name="description"
+                            placeholder="Escribe la descripción" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Cantidad</label>
+                        <input type="number" class="form-control" [(ngModel)]="quantity" name="quantity"
+                            placeholder="Ingrese la cantidad" required min="0">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Precio</label>
+                        <input type="number" class="form-control" [(ngModel)]="price" name="price"
+                            placeholder="Ingrese el precio" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Categoria</label>
+                        <select class="form-select" [(ngModel)]="categoryId" name="categoryId" required>
+                            <option value="" disabled selected>Seleccione una categoría</option>
+                            <option *ngFor="let i of categories" [value]="i.id">
+                                {{ i.name }}
+                            </option>
+                        </select>
+                    </div>
+
+                </form>
+
+            </div>
+
+
+            <div class="modal-footer">
+                <button class="btn btn-secondary" (click)="cancel()">
+                    Cancelar
+                </button>
+                <button class="btn btn-primary" (click)="save()" [disabled]="!name || !description || !quantity || !price || !categoryId">
+                    Guardar
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>

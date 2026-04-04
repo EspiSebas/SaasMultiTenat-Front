@@ -1,7 +1,5 @@
-<!-- Fondo oscuro -->
 <div class="modal-backdrop fade show"></div>
 
-<!-- Modal -->
 <div class="modal fade show d-block">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -45,12 +43,11 @@
             </tr>
           </tbody>
         </table>
-
-       
+         
+        <p>Total de la venta: {{ getTotal() | currency }}</p>
 
       </div>
 
-      <!-- Footer -->
       <div class="modal-footer">
         <button class="btn btn-secondary"
                 (click)="close.emit()">
