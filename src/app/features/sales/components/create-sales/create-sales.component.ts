@@ -77,30 +77,38 @@ export class CreateSalesComponent {
   }
 
 
-  createSale() {
+ createSale() {
 
-    if (this.cart.length === 0) {
-      alert('Agrega productos');
-      return;
-    }
-
-    const sale = {
-      paymentMethod: this.paymentMethod,
-      discount: this.discount,
-      details: this.cart.map(item => ({
-        productId: item.id,
-        quantity: item.quantity
-      }))
-    };
-
-    console.log('Venta enviada:', sale);
-
-    this.saleService.createSale(sale).subscribe({
-      next:()=> alert('Venta creada correctamente')
-    })
-    this.cart = [];
-    this.discount = 0;
-    this.paymentMethod = 'CASH';
+  if (this.cart.length === 0) {
+    alert('Agrega productos');
+    return;
   }
+
+  const sale = {
+    paymentMethod: this.paymentMethod,
+    discount: this.discount,
+    details: this.cart.map(item => ({
+      productId: item.id,
+      quantity: item.quantity
+    }))
+  };
+
+  console.log('Venta enviada:', sale);
+
+  this.saleService.createSale(sale).subscribe({
+    next: () => {
+      alert('Venta creada correctamente');
+
+      this.cart = [];
+      this.discount = 0;
+      this.paymentMethod = 'CASH';
+      this.getProduct();
+    },
+    error: (err) => {
+      console.error(err);
+      alert('Error al crear la venta');
+    }
+  });
+} 
 
 }

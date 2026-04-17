@@ -2,11 +2,12 @@
 <div class="container-fluid">
   <div class="row">
    
-    <div class="col-md-2 bg-dark text-white vh-100 p-3">
+    <div class="col-md-2 bg-dark min-vh-100 p-0 position-fixed">
       <app-navbar></app-navbar>
     </div>
+
   
-    <div class="col-md-10 bg-light min-vh-100 p-4">
+    <div class="col-md-10 offset-md-2 p-4 bg-light min-vh-100">
 
       <div class="d-flex justify-content-between align-items-center mb-4">
         <h2 class="fw-bold mb-0">Historial Ventas</h2>
@@ -23,6 +24,7 @@
                 <tr>
                   <th>ID</th>
                   <th>Metodo de Pago</th>
+                  <th>Fecha</th>
                   <th>Descuento</th>
                 
                   <th class="text-center">Accion</th>
@@ -35,6 +37,9 @@
                   <td class="fw-semibold">{{i.id}}</td>
                   <td class="text-truncate" style="max-width: 180px;">
                     {{i.paymentMethod}}
+                  </td>
+                  <td class="text-truncate" style="max-width: 180px;">
+                    {{i.date}}
                   </td>
                   <td class="fw-semibold text-success">
                     ${{i.discount}}

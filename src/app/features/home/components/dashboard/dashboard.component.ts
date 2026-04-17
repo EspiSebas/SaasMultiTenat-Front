@@ -12,14 +12,14 @@ import { Router,RouterModule } from '@angular/router';
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent {
-  
-  
-
   constructor(
     private productService: ProductService,
     private categoryService: CategoryService
   ){}
+
   
+  totalProducts : any = []
+
   stats = {
     products: 0,
     categories: 0,
@@ -30,15 +30,16 @@ export class DashboardComponent {
   products: any = []
 
   resumen = {
-    enStock: 150,
-    bajoMinimo: 8,
-    agotados: 3
+    enStock: 0,
+    bajoMinimo: 0,
+    agotados: 0
   };
 
 
    ngOnInit(): void {
     this.getProducts();
     this.getCategories();
+    
   }
 
 
@@ -47,11 +48,29 @@ export class DashboardComponent {
       next:(data) => {
         this.stats.products = data.length
         this.products = data.slice(0,4)
+        this.totalProducts = data;
+        this.getResume();
       },
       error: (err) => console.error(err)
     })
   }
 
+  getResume(){
+    this.resumen.enStock = 0;
+    this.resumen.agotados = 0;
+    this.resumen.bajoMinimo =0;
+    
+    for (let index = 0; index < this.totalProducts.length; index++) {
+      const element = this.totalProducts[index];
+      if(element["status"] == "EN_STOCK"){
+        this.resumen.enStock++;
+      }else if(element["status"] == "BAJO_MINIMO"){
+        this.resumen.bajoMinimo++;
+      }else{
+        this.resumen.agotados++;
+      }
+    }
+  }
 
   getCategories(){
     this.categoryService.getCategories().subscribe({
@@ -67,6 +86,7 @@ export class DashboardComponent {
       'badge bg-danger': status === 'AGOTADO'
     };
   }
+
 
   getStatusLabel(status: string) {
     switch (status) {

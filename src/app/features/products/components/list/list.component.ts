@@ -54,4 +54,22 @@ export class ListComponentProduct {
     this.showModalCreate = false;
   }
 
+  getStatusClass(status: string) {
+    return {
+      'badge bg-success': status === 'EN_STOCK',
+      'badge bg-warning text-dark': status === 'BAJO_MINIMO',
+      'badge bg-danger': status === 'AGOTADO'
+    };
+  }
+
+  
+  getStatusLabel(status: string) {
+    switch (status) {
+      case 'EN_STOCK': return 'En stock';
+      case 'BAJO_MINIMO': return 'Bajo mínimo';
+      case 'AGOTADO': return 'Agotado';
+      default: return status;
+    }
+  }
+
 }
