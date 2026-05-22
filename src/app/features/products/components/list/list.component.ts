@@ -3,19 +3,21 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../../../../shared/navbar/navbar.component';
 import { ProductService } from '../../services/products.service';
 import { ModalCreateProductComponent } from '../modal-create-product/modal-create-product.component';
+import { ModalUpdateProductComponent } from '../modal-update-product/modal-update-product.component';
 
 @Component({
   selector: 'app-list',
   standalone: true,
-  imports: [CommonModule, NavbarComponent,ModalCreateProductComponent],
+  imports: [CommonModule, NavbarComponent,ModalCreateProductComponent,ModalUpdateProductComponent],
   templateUrl: './list.component.html',
   styleUrl: './list.component.css'
 })
 export class ListComponentProduct {
 
   products: any = [];
-
+  selectedProduct: any;
   showModalCreate = false;
+  showModalUpdate = false;
 
 
   constructor(private productService: ProductService) {}
@@ -41,6 +43,15 @@ export class ListComponentProduct {
   }
 
 
+  openModalUpdate(i:any){
+    this.selectedProduct = i;
+    this.showModalUpdate = true;
+  }
+
+  closeModalUpdate(){
+    this.showModalUpdate = false;
+  }
+
   openModalCreate(){
     this.showModalCreate = true;
   }
@@ -52,6 +63,10 @@ export class ListComponentProduct {
   onProductCreated(produ:any){
     this.loadProducts();
     this.showModalCreate = false;
+  }
+
+  productUpdated(produ:any){
+    this.loadProducts();
   }
 
   getStatusClass(status: string) {

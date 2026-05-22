@@ -38,7 +38,7 @@
 
               
               <div class="d-flex justify-content-end mt-3">
-                <button class="btn btn-outline-primary btn-sm me-2">
+                <button class="btn btn-outline-primary btn-sm me-2" (click)="openUpdateModal(cat)">
                   Editar
                 </button>
 
@@ -63,3 +63,11 @@
 (close)="closeCreateModal()"
 (created)="onCategoryCreated($event)">
 ></app-modal-create-category>
+
+<app-modal-update-category
+ *ngIf="showUpdateModal"
+  [category]="selectedCategory"
+  (close)="closeUpdateModal()"
+  (categoryUpdated)="categoryUpdated($event)"
+
+></app-modal-update-category>
