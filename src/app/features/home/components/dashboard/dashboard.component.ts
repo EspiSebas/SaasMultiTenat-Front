@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { ProductService } from '../../../products/services/products.service';
 import { CategoryService } from '../../../categories/services/categories.service';
 import { Router,RouterModule } from '@angular/router';
+import { SaleService } from '../../../sales/services/sales.service';
+import { HistorialService } from '../../../historial/services/historial.service';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
@@ -14,7 +16,8 @@ import { Router,RouterModule } from '@angular/router';
 export class DashboardComponent {
   constructor(
     private productService: ProductService,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private allSales : HistorialService
   ){}
 
   
@@ -23,8 +26,8 @@ export class DashboardComponent {
   stats = {
     products: 0,
     categories: 0,
-    dailySales: 1250,
-    totalSales: 20430
+    dailySales: 0,
+    totalSales: 0
   };
 
   products: any = []
@@ -39,7 +42,7 @@ export class DashboardComponent {
    ngOnInit(): void {
     this.getProducts();
     this.getCategories();
-    
+    this.getSales();
   }
 
 
@@ -52,6 +55,15 @@ export class DashboardComponent {
         this.getResume();
       },
       error: (err) => console.error(err)
+    })
+  }
+
+  getSales(){
+    this.allSales.getAllSales().subscribe({
+      next:(data) => {
+        console.log(data);        
+    },
+    error: (err) => console.log(err)
     })
   }
 
@@ -96,5 +108,7 @@ export class DashboardComponent {
       default: return status;
     }
   }
+
+  
 
 }
