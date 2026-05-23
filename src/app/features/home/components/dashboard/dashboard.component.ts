@@ -22,6 +22,7 @@ export class DashboardComponent {
 
   
   totalProducts : any = []
+  totalSales : any = []
 
   stats = {
     products: 0,
@@ -61,10 +62,26 @@ export class DashboardComponent {
   getSales(){
     this.allSales.getAllSales().subscribe({
       next:(data) => {
-        console.log(data);        
+        this.totalSales = data;
+        this.getStatSale();        
     },
     error: (err) => console.log(err)
     })
+  }
+
+
+  getStatSale(){
+
+    const today = new Date();
+    const date = today.toISOString().split('T')[0];
+    this.stats.dailySales = 0;
+    for (let index = 0; index < this.totalSales.length; index++) {
+      const element = this.totalSales[index];
+      this.stats.totalSales = this.stats.totalSales + element.total;
+      if(element.date == date){
+        this.stats.dailySales = this.stats.dailySales + Number(element.total);
+      }
+    }
   }
 
   getResume(){
