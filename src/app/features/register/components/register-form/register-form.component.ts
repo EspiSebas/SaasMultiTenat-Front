@@ -39,7 +39,7 @@ export class RegisterFormComponent {
       },
       error: (err) => {
         console.log(err);
-        this.errorMessage = err.error["name"] || err.error["password"] || err.error["email"];
+        this.errorMessage = err.error["name"] || err.error["password"] || err.error["email"] ;
 
       }
     })

@@ -20,7 +20,7 @@ export class ModalCreateProductComponent {
   quantity = 0;
   price = 0;
   categoryId = 0;
-
+  errorMessage = ""
   constructor(
 
     private categoryService: CategoryService,
@@ -61,6 +61,10 @@ export class ModalCreateProductComponent {
       next:() => {
         this.created.emit(product);
         this.cancel()
+      },
+      error: (err) =>{
+        console.log(err)
+        this.errorMessage = err.error["quantity"] || err.error["price"]
       }
     })
   }

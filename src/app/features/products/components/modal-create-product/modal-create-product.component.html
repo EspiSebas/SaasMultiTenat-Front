@@ -29,10 +29,16 @@
                         <input type="number" class="form-control" [(ngModel)]="quantity" name="quantity"
                             placeholder="Ingrese la cantidad" required min="0">
                     </div>
+                    <div *ngIf="quantity < 0" class="text-danger">
+                        La cantidad no puede ser negativa.
+                    </div>
                     <div class="mb-3">
                         <label class="form-label">Precio</label>
                         <input type="number" class="form-control" [(ngModel)]="price" name="price"
                             placeholder="Ingrese el precio" required>
+                    </div>
+                    <div *ngIf="price < 0" class="text-danger">
+                        El precio no puede ser negativa.
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Categoria</label>
@@ -48,12 +54,16 @@
 
             </div>
 
+            <div *ngIf="errorMessage" class="alert alert-danger text-center">
+                {{errorMessage}}
+            </div>
 
             <div class="modal-footer">
                 <button class="btn btn-secondary" (click)="cancel()">
                     Cancelar
                 </button>
-                <button class="btn btn-primary" (click)="save()" [disabled]="!name || !description || !quantity || !price || !categoryId">
+                <button class="btn btn-primary" (click)="save()"
+                    [disabled]="!name || !description || price == null || quantity < 0 || !categoryId || quantity == null || quantity < 0">
                     Guardar
                 </button>
             </div>

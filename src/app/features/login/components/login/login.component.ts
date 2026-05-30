@@ -39,8 +39,8 @@ export class LoginComponent {
 
       error:(err)=>{
         console.log(err);
-        this.errorMessage = err.error["email"] || err.error["password"];
-       
+        this.errorMessage = err.error["email"] || err.error["password"] || err.error["message"];
+
       }
 
     })

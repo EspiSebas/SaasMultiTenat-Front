@@ -14,7 +14,7 @@ export class ModalCreateCategoryComponent {
 
   name = "";
   description = "";
-
+  
   constructor(private categoryService: CategoryService){}
 
   @Output() close = new EventEmitter<void>();
@@ -30,7 +30,9 @@ export class ModalCreateCategoryComponent {
       next:() => {
         this.created.emit(category);
         this.cancel()
-      }
+      }, 
+      
+      
     })
   }
 

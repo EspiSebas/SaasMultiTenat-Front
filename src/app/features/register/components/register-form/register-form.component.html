@@ -68,7 +68,7 @@
           </div>
 
         </div>
-        <button 
+        <button [disabled]="!name || !email || !password || !nameCompany"
           type="submit"
           class="btn btn-success w-100 mt-3 py-1 fw-semibold">
           Crear cuenta
