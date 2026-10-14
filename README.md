@@ -1,27 +1,173 @@
-# Saasmultitent
+# SaaSMultiTenant Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.7.
+**A multi-tenant SaaS web application built with Angular and Bootstrap.**
 
-## Development server
+This project provides the user interface for a SaaS platform designed to help companies manage their business operations through a centralized web application. It communicates with a REST API backend to handle company-specific information and business processes.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+The frontend is part of the [SaaSMultiTent Backend](https://github.com/EspiSebas/SaasMultiTent) project.
 
-## Code scaffolding
+## Overview
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+SaaSMultiTenant is designed around a multi-tenant architecture, allowing different companies to manage their business information within a single platform while keeping their data logically separated.
+
+The frontend focuses on providing an accessible, maintainable, and responsive interface for interacting with the backend services.
+
+## Features
+
+- **Authentication:** User login and integration with the backend authentication system.
+- **Company Management:** Access company-specific business information.
+- **Inventory Management:** Manage products, categories, quantities, and prices.
+- **Sales Management:** Interact with sales-related operations.
+- **Dashboard:** Present relevant business information in a centralized interface.
+- **REST API Integration:** Communicate with the backend through HTTP requests.
+- **Responsive UI:** Build user interfaces using Bootstrap components and responsive layouts.
+
+*Features are subject to the current implementation and ongoing development.*
+
+## Tech Stack
+
+| Technology | Purpose |
+|---|---|
+| Angular 18 | Frontend framework |
+| TypeScript | Typed application development |
+| Bootstrap 5 | Responsive UI and styling |
+| RxJS | Reactive programming and asynchronous data handling |
+| Angular Router | Client-side navigation |
+| Angular Forms | Form handling and user input |
+| Node.js and npm | Development environment and dependency management |
+| Angular CLI | Development server and production builds |
+
+## Architecture
+
+The frontend follows a component-based architecture using Angular.
+
+Its main responsibilities include:
+
+- Rendering application pages and reusable UI components.
+- Managing navigation between application views.
+- Handling forms and user interactions.
+- Communicating with the backend REST API.
+- Displaying API responses and handling request errors.
+- Integrating authentication with protected application resources.
+
+### System Architecture
+
+```text
+┌─────────────────────────────┐
+│        Angular Frontend     │
+│                             │
+│  Components and Pages       │
+│  Services and Forms         │
+│  Routing and HTTP Requests  │
+└──────────────┬──────────────┘
+               │
+               │ HTTP / REST API
+               │
+┌──────────────▼──────────────┐
+│       Spring Boot Backend   │
+│                             │
+│  Authentication and JWT    │
+│  Company and Tenant Logic   │
+│  Inventory and Sales        │
+└──────────────┬──────────────┘
+               │
+┌──────────────▼──────────────┐
+│           MySQL             │
+└─────────────────────────────┘
+```
+
+## Getting Started
+
+### Prerequisites
+
+Make sure you have installed:
+
+- [Node.js](https://nodejs.org/)
+- npm, included with Node.js
+- [Angular CLI](https://angular.dev/tools/cli)
+- Git
+- A running instance of the backend API for integrated functionality
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/EspiSebas/SaasMultiTenat-Front.git
+cd SaasMultiTenat-Front
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Configure the backend API
+
+Configure the frontend's API base URL according to your Angular environment configuration and the address where the Spring Boot backend is running.
+
+For local development, the backend might be available at:
+
+```text
+http://localhost:8080
+```
+
+Use the actual API base URL configured by your backend. If the frontend and backend run on different origins, configure the appropriate CORS settings on the backend.
+
+### 4. Start the development server
+
+```bash
+npm start
+```
+
+Alternatively, use the Angular CLI:
+
+```bash
+ng serve
+```
+
+Open your browser at:
+
+```text
+http://localhost:4200
+```
+
+The development server automatically reloads when source files change.
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+To create a production build, run:
 
-## Running unit tests
+```bash
+npm run build
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+The generated application files will be placed in the `dist/` directory.
 
-## Running end-to-end tests
+## Testing
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Run the unit tests with:
 
-## Further help
+```bash
+npm test
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+The project is configured to use Jasmine and Karma for testing.
+
+## Related Repository
+
+**Backend:** [SaaSMultiTent — Spring Boot API](https://github.com/EspiSebas/SaasMultiTent)
+
+The backend provides the API and business logic consumed by this Angular application.
+
+## Author
+
+**Sebastian Espinosa**
+
+Software Development Technologist | Backend & Full Stack Developer
+
+- GitHub: [@EspiSebas](https://github.com/EspiSebas)
+- LinkedIn: [sebastian-espinosa-dev](https://www.linkedin.com/in/sebastian-espinosa-dev/)
+
+---
+
+*Built as a practical project to strengthen skills in frontend development, REST API integration, application architecture, and full-stack software engineering.*
